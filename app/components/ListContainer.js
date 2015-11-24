@@ -8,55 +8,36 @@ var todoActions = require('../actions/todoActions');
 var ListContainer = React.createClass({
 
 	 propTypes: {
-
 		 list: React.PropTypes.array,
 	 },
-
   getInitialState: function() {
     return {
       list: todoStore.getList()
     }
   },
-
 	componentWillMount: function componentWillMount() {
-
 		this.socket = io('www.example.com');
-		this.socket.on('tables', this.handleAddItems);
+		this.socket.on('tables', this.handleAddItem);
 	},
-
   componentDidMount: function() {
     todoStore.addChangeListener(this._onChange);
   },
-
   componentWillUnmount: function() {
     todoStore.removeChangeListener(this._onChange);
   },
-
   handleAddItem: function(newItem) {
-
 	  console.log("handleAddItem called");
     todoActions.addItem(newItem);
   },
-
-  handleAddItems: function(newItems) {
-
-	  console.log("handleAddItems called");
-    todoActions.addItems(newItems);
-  },
-
-
   handleRemoveItem: function(index) {
     todoActions.removeItem(index);
   },
-
   _onChange: function() {
     this.setState({
       list: todoStore.getList()
     });
   },
-
   render: function() {
-
     return (
       React.createElement(
         "div",

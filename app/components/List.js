@@ -1,11 +1,9 @@
 var React = require('react');
 
 var List = React.createClass({
+
   render: function() {
-
-
     var listItems = this.props.items.map(function(item, index) {
-
       return (
 	      console.log(this),
         <li key={index} className="list-group-item">
@@ -17,13 +15,11 @@ var List = React.createClass({
         </li>
       )
     }.bind(this));
-
     return (
       <ul>
         {listItems}
       </ul>
     )
-
   }
 });
 
